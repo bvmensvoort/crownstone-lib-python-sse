@@ -4,6 +4,7 @@ and returns received events in data containers.
 
 This class must be used in the event loop.
 """
+
 from __future__ import annotations
 
 import asyncio
@@ -17,19 +18,21 @@ import aiohttp
 
 import crownstone_sse
 from crownstone_sse.const import (
+    CLOUD_LOGIN_SUFFIX,
     CONNECTION_TIMEOUT,
     CONTENT_TYPE,
-    EVENT_BASE_URL,
+    DEFAULT_CLOUD_ADDR,
+    DEFAULT_SSE_ADDR,
     EVENT_SYSTEM_NO_CONNECTION,
     EVENT_SYSTEM_TOKEN_EXPIRED,
     EVENT_SYSTEM_TOKEN_INVALID,
     LOGIN_FAILED,
     LOGIN_FAILED_EMAIL_NOT_VERIFIED,
-    LOGIN_URL,
     NO_CACHE,
     NO_PROJECT_NAME,
     PROJECT_NAME,
     RECONNECTION_TIME,
+    SSE_AUTH_SUFFIX,
 )
 from crownstone_sse.events import Event, SystemEvent, parse_event
 from crownstone_sse.exceptions import (
@@ -204,7 +207,9 @@ class CrownstoneSSEAsync:
 
         try:
             # login
-            response = await self.websession.post(LOGIN_URL, json=login_data)
+            response = await self.websession.post(
+                f"{DEFAULT_CLOUD_ADDR}{CLOUD_LOGIN_SUFFIX}", json=login_data
+            )
             data: dict[str, Any] = await response.json()
             # success
             if response.status == 200:
@@ -257,7 +262,7 @@ class CrownstoneSSEAsync:
 
         try:
             response = await self.websession.get(
-                url=f"{EVENT_BASE_URL}{self._access_token}&projectName={self._project_name}",
+                url=f"{DEFAULT_SSE_ADDR}{SSE_AUTH_SUFFIX}{self._access_token}&projectName={self._project_name}",
                 headers=headers,
                 timeout=sse_timeout,
             )

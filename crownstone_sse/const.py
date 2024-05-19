@@ -7,9 +7,12 @@ from typing import Final
 PROJECT_NAME: Final = "crownstone-lib-python-sse"
 NO_PROJECT_NAME: Final = "no_project_name"
 
-# URLs
-EVENT_BASE_URL: Final = "https://events.crownstone.rocks/sse?accessToken="
-LOGIN_URL: Final = "https://cloud.crownstone.rocks/api/users/login"
+# Addresses / suffixes
+DEFAULT_SSE_ADDR: Final = "https://events.ownstone.org/sse"
+DEFAULT_CLOUD_ADDR: Final = "https://cloud.ownstone.org/api"
+
+SSE_AUTH_SUFFIX: Final = "?accessToken="
+CLOUD_LOGIN_SUFFIX: Final = "/users/login"
 
 # Headers
 CONTENT_TYPE: Final = "text/event-stream"
