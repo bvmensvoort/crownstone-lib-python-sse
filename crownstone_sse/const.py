@@ -8,8 +8,8 @@ PROJECT_NAME: Final = "crownstone-lib-python-sse"
 NO_PROJECT_NAME: Final = "no_project_name"
 
 # Addresses / suffixes
-DEFAULT_SSE_ADDR: Final = "https://events.ownstone.org/sse"
-DEFAULT_CLOUD_ADDR: Final = "https://cloud.ownstone.org/api"
+DEFAULT_SSE_ADDR: Final = "http://localhost:8050/sse"
+DEFAULT_CLOUD_ADDR: Final = "http://localhost:8051/api"
 
 SSE_AUTH_SUFFIX: Final = "?accessToken="
 CLOUD_LOGIN_SUFFIX: Final = "/users/login"
